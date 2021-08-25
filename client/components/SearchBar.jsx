@@ -4,6 +4,7 @@ import Autocomplete from '@material-ui/lab/Autocomplete';
 
 const SearchBar = () => {
   const [myOptions, setMyOptions] = useState([]);
+  const [name, setName] = useState('');
 
   const getDataFromAPI = (value) => {
     console.log('value', value);
@@ -27,8 +28,15 @@ const SearchBar = () => {
       });
   };
 
+  const handleSubmit = (env) => {
+    event.preventDefault();
+    alert(`hello`);
+    console.log("event", env);
+  }
+
   return (
     <div style={{ marginLeft: '40%', marginTop: '60px' }}>
+      <form onSubmit={(event) => handleSubmit(event.target.value)}>
       <h3>Search for Movie</h3>
       <Autocomplete
         style={{ width: 500 }}
@@ -41,11 +49,14 @@ const SearchBar = () => {
           <TextField
             {...params}
             onChange={(event) => getDataFromAPI(event.target.value)}
+            value={name}
             variant="outlined"
             label="Search Box"
           />
         )}
       />
+      <input type="submit" value="Submit"/>
+      </form>
     </div>
   );
 };
