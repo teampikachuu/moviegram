@@ -9,11 +9,11 @@ CREATE TABLE "public.Users" (
 
 
 CREATE TABLE "public.Movies" (
-	"id" SERIAL,
+	"id" int,
 	"movie_name" varchar(255) NOT NULL,
 	"movie_genre" varchar(255) NOT NULL,
 	"status" varchar(255) NOT NULL,
-	"score" FLOAT(1),
+	"score" FLOAT(1) DEFAULT -1,
 	"username" varchar(255) NOT NULL,
     "imgURL" varchar(255) NOT NULL
 ) WITH (
