@@ -1,7 +1,6 @@
 CREATE TABLE "public.Users" (
 	"username" varchar(255) NOT NULL,
 	"password" varchar(255) NOT NULL,
-	"created_at" TIMESTAMP NOT NULL DEFAULT 'date.now()',
 	CONSTRAINT "Users_pk" PRIMARY KEY ("username")
 ) WITH (
   OIDS=FALSE
@@ -10,13 +9,13 @@ CREATE TABLE "public.Users" (
 
 
 CREATE TABLE "public.Movies" (
-	"id" serial(255) NOT NULL,
+	"id" SERIAL,
 	"movie_name" varchar(255) NOT NULL,
 	"movie_genre" varchar(255) NOT NULL,
 	"status" varchar(255) NOT NULL,
-	"score" integer(10) NOT NULL,
+	"score" FLOAT(1),
 	"username" varchar(255) NOT NULL,
-	CONSTRAINT "Movies_pk" PRIMARY KEY ("id")
+    "imgURL" varchar(255) NOT NULL
 ) WITH (
   OIDS=FALSE
 );
@@ -24,4 +23,4 @@ CREATE TABLE "public.Movies" (
 
 
 
-ALTER TABLE "Movies" ADD CONSTRAINT "Movies_fk0" FOREIGN KEY ("username") REFERENCES "Users"("username");
+ALTER TABLE "public.Movies" ADD CONSTRAINT "public.Movies_fk0" FOREIGN KEY ("username") REFERENCES "Users"("username");
