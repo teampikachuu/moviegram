@@ -20,6 +20,25 @@ moviesController.getToWatch = (req, res, next) => {
       });
 }
 
+moviesController.addMovie = (req, res, next) => {
+  const movieQ = `INSERT INTO "public.Movies" 
+  ("id", "movie_name", "movie_genre", "status", "score", "username", "imgURL") 
+  VALUES ($1, $2, $3, $4, $5, $6, $7)`
+  const {id, movieName, movieGenre, status, score, username, imgURL} = req.body
+  const values = [id, movieName, movieGenre, status, score, username, imgURL]
+  console.log(req.body)
+  console.log(values)
+  db.query(movieQ, values, (err, qres) => {
+    //console.log(value)
+    if (err) {
+      console.log(err);
+    }
+    res.locals = qres;
+    console.log(res.locals);
+    return next();
+  });
+}
+
 moviesController.getWatched = (req, res, next) => {
   const movieQ = `SELECT * 
   FROM "public.Movies" 
