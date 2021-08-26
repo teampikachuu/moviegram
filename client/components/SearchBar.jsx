@@ -28,9 +28,10 @@ const SearchBar = () => {
       });
   };
 
-  const handleSubmit = (e) => {
+  const addToWatched = () => {
     const movieObj = myOptions.filter((option) => option.title === name)[0]
     console.log(movieObj)
+    //post req
     fetch('localhost:3000/api/movies', {
       method: 'POST', // *GET, POST, PUT, DELETE, etc.
       headers: {
@@ -38,6 +39,20 @@ const SearchBar = () => {
         // 'Content-Type': 'application/x-www-form-urlencoded',
       },
       body: JSON.stringify({movieName: movieObj.title, status: "watched", username: user, score: null}) // body data type must match "Content-Type" header
+    });
+  }
+
+  const addToWantToWatch = () => {
+    const movieObj = myOptions.filter((option) => option.title === name)[0]
+    console.log(movieObj)
+    //post req
+    fetch('localhost:3000/api/movies', {
+      method: 'POST', // *GET, POST, PUT, DELETE, etc.
+      headers: {
+        'Content-Type': 'application/json'
+        // 'Content-Type': 'application/x-www-form-urlencoded',
+      },
+      body: JSON.stringify({movieName: movieObj.title, id: movieObj.id, status: "unwatched", username: user, score: null}) // body data type must match "Content-Type" header
     });
   }
 
@@ -70,9 +85,13 @@ const SearchBar = () => {
           />
         )}
       />
-      <input type="submit" onClick={e=>{
+      <input type="submit" value="Add to Watched" onClick={e=>{
         e.preventDefault()
-        handleSubmit()
+        addToWatched()
+        }}/>
+      <input type="submit" value="Add to Want to Watch" onClick={e=>{
+        e.preventDefault()
+        addToWantToWatch()
         }}/>
       </form>
     </div>
