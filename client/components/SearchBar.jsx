@@ -5,7 +5,8 @@ import Autocomplete from '@material-ui/lab/Autocomplete';
 const SearchBar = () => {
   const [myOptions, setMyOptions] = useState([]);
   const [name, setName] = useState('');
-
+  //const [selected, setSelected] = useState({})
+  const user = "Terry"
   const getDataFromAPI = (value) => {
     console.log('value', value);
     console.log('Options Fetched from API');
@@ -21,22 +22,34 @@ const SearchBar = () => {
       .then((res) => {
         console.log(res);
         for (let i = 0; i < res.results.length; i++) {
-          if(!myOptions.includes(res.results[i].title)) 
-          myOptions.push(res.results[i].title);
+          myOptions.push(res.results[i]);
         }
         setMyOptions(myOptions);
       });
   };
 
-  const handleSubmit = (env) => {
-    event.preventDefault();
-    alert(`hello`);
-    console.log("event", env);
+  const handleSubmit = (e) => {
+    const movieObj = myOptions.filter((option) => option.title === name)[0]
+    console.log(movieObj)
+    post req
+    fetch('localhost:3000/api/movies', {
+      method: 'POST', // *GET, POST, PUT, DELETE, etc.
+      headers: {
+        'Content-Type': 'application/json'
+        // 'Content-Type': 'application/x-www-form-urlencoded',
+      },
+      body: JSON.stringify({movieName: movieObj.title, id: movieObj.id, status: "watched", username: user, score: null}) // body data type must match "Content-Type" header
+    });
+  }
+
+  const handleChange = (env) => {
+    console.log(env.target.value)
+    setName(env.target.value)
   }
 
   return (
     <div style={{ marginLeft: '40%', marginTop: '60px' }}>
-      <form onSubmit={(event) => handleSubmit(event.target.value)}>
+      <form> 
       <h3>Search for Movie</h3>
       <Autocomplete
         style={{ width: 500 }}
@@ -45,6 +58,9 @@ const SearchBar = () => {
         selectOnFocus
         autoHighlight
         options={myOptions}
+        getOptionLabel={(option) => option.title}
+        onSelect={event=>handleChange(event)}
+        // onChange={event => handleChange(event)} 
         renderInput={(params) => (
           <TextField
             {...params}
@@ -55,7 +71,10 @@ const SearchBar = () => {
           />
         )}
       />
-      <input type="submit" value="Submit"/>
+      <input type="submit" onClick={e=>{
+        e.preventDefault()
+        handleSubmit()
+        }}/>
       </form>
     </div>
   );
