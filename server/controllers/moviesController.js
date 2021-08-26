@@ -23,9 +23,9 @@ moviesController.getToWatch = (req, res, next) => {
 moviesController.addMovie = (req, res, next) => {
   const movieQ = `INSERT INTO "public.Movies" 
   ("movie_name", "status", "score", "username") 
-  VALUES ($1, $2, $3, $4, $5)`
+  VALUES ($1, $2, $3, $4)`
   const {movieName, status, score, username} = req.body
-  const values = [movieName, status, score, usernameimgURL]
+  const values = [movieName, status, score, username]
   console.log(req.body)
   console.log(values)
   db.query(movieQ, values, (err, qres) => {

@@ -134,6 +134,11 @@ html {
     color: rgb(1, 1, 17);
   }
   
+  .tables{
+    display: flex;
+    justify-content: space-around;
+  }
+
   nav ul {
     list-style: none;
     display: flex;
