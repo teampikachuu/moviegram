@@ -1,17 +1,50 @@
 import React, { useState, useEffect } from 'react';
 import { useTable } from 'react-table';
+import styled from 'styled-components'
 
 const ToWatch = () => {
   const [movies, setMovies] = useState([]);
 
   useEffect(() => {
-    fetch('http://localhost:3000/api/toWatch?username=Terry', { method: 'GET' })
+    fetch('http://localhost:3000/api/toWatch?username=Terry', { 
+      method: 'GET',
+      //headers: {'Access-Control-Allow-Origin': 'http://localhost:3000'}
+     })
       .then((response) => response.json())
       .then((result) => {
         setMovies(result);
         console.log(result);
       });
   }, []);
+
+  const Styles = styled.div`
+  padding: 1rem;
+
+  table {
+    border-spacing: 0;
+    border: 1px solid black;
+
+    tr {
+      :last-child {
+        td {
+          border-bottom: 0;
+        }
+      }
+    }
+
+    th,
+    td {
+      margin: 0;
+      padding: 0.5rem;
+      border-bottom: 1px solid black;
+      border-right: 1px solid black;
+
+      :last-child {
+        border-right: 0;
+      }
+    }
+  }
+`
 
   function Table({ columns, data }) {
     // Use the state and functions returned from useTable to build your UI
@@ -58,11 +91,11 @@ const ToWatch = () => {
     const columns = React.useMemo(
       () => [
         {
-          Header: 'Watched',
+          Header: 'To Watch',
           columns: [
             {
               Header: 'Movie',
-              accessor: 'movie',
+              accessor: 'movie_name',
             },
             {
               Header: 'Score',
@@ -74,15 +107,19 @@ const ToWatch = () => {
       []
     )
     //}
-    //const data = React.useMemo(() => makeData(20), [])
-    const dataArray = []
-  for (let obj of movies){
-    dataArray.push(obj.movie_name)
-  }
+    //const mooovies = React.useMemo(() => movies, [])
+    //const dataArray = []
+    console.log('movies', movies)
+    //console.log("movies", mooovies)
+  // for (let obj of movies){
+  //   dataArray.push(obj.movie_name)
+  // }
     return ( 
       <div>
-        {/* <Table columns={columns} /> */}
-        <ul>{dataArray}</ul>
+        <Styles>
+          <Table columns={columns} data={movies}/>
+        </Styles>
+        {/* <ul>{dataArray}</ul> */}
       </div>
     )
   

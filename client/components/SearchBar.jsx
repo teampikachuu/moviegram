@@ -32,7 +32,7 @@ const SearchBar = () => {
     const movieObj = myOptions.filter((option) => option.title === name)[0]
     console.log(movieObj)
     //post req
-    fetch('localhost:3000/api/movies', {
+    fetch('http://localhost:3000/api/movies', {
       method: 'POST', // *GET, POST, PUT, DELETE, etc.
       headers: {
         'Content-Type': 'application/json'
@@ -46,13 +46,13 @@ const SearchBar = () => {
     const movieObj = myOptions.filter((option) => option.title === name)[0]
     console.log(movieObj)
     //post req
-    fetch('localhost:3000/api/movies', {
+    fetch('http://localhost:3000/api/movies', {
       method: 'POST', // *GET, POST, PUT, DELETE, etc.
       headers: {
         'Content-Type': 'application/json'
         // 'Content-Type': 'application/x-www-form-urlencoded',
       },
-      body: JSON.stringify({movieName: movieObj.title, id: movieObj.id, status: "unwatched", username: user, score: null}) // body data type must match "Content-Type" header
+      body: JSON.stringify({movieName: movieObj.title, status: "unwatched", username: user, score: null}) // body data type must match "Content-Type" header
     });
   }
 
