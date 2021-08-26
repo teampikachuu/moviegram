@@ -7,7 +7,6 @@ const SearchBar = () => {
 
   const getDataFromAPI = () => {
     console.log('Options Fetched from API');
-
     fetch(
       'https://api.themoviedb.org/3/movie/550?api_key=fdbae0761ba6f8241b3cf31d7a03a2f9'
     )
