@@ -1,14 +1,14 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import {render} from 'react-dom';
 import './index.css';
-import { BrowserRouter } from 'react-router-dom';
-import App from './App.jsx'
+import MainContainer from './containers/MainContainer.jsx';
 
-render(
-    <BrowserRouter>
-      <App />
-    </BrowserRouter>,
-  document.getElementById('app')
-)
-//ReactDOM.render(<App />, document.getElementById('app'))
+class App extends React.Component{
+    render(){
+        return(
+            <MainContainer />
+        )
+    }
+}
+
+ReactDOM.render(<App />, document.getElementById('app'))
