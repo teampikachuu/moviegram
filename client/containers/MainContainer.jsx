@@ -13,8 +13,8 @@ class MainContainer extends Component {
       <div className="container">
           <SearchBar />
           <div className="tables">
-            <ToWatch />
             <Watched />
+            <ToWatch />
           </div>
       </div>
     );

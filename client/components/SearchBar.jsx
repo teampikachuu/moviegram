@@ -29,6 +29,7 @@ const SearchBar = () => {
   };
 
   const addToWatched = () => {
+    let score = prompt('Please score the movie from 1-10', "<enter score here>")
     const movieObj = myOptions.filter((option) => option.title === name)[0]
     console.log(movieObj)
     //post req
@@ -38,11 +39,12 @@ const SearchBar = () => {
         'Content-Type': 'application/json'
         // 'Content-Type': 'application/x-www-form-urlencoded',
       },
-      body: JSON.stringify({movieName: movieObj.title, status: "watched", username: user, score: null}) // body data type must match "Content-Type" header
+      body: JSON.stringify({movieName: movieObj.title, status: "watched", username: user, score: score}) // body data type must match "Content-Type" header
     });
   }
 
   const addToWantToWatch = () => {
+    let score = prompt('Please score the movie from 1-10', "<enter score here>")
     const movieObj = myOptions.filter((option) => option.title === name)[0]
     console.log(movieObj)
     //post req
@@ -52,7 +54,7 @@ const SearchBar = () => {
         'Content-Type': 'application/json'
         // 'Content-Type': 'application/x-www-form-urlencoded',
       },
-      body: JSON.stringify({movieName: movieObj.title, status: "unwatched", username: user, score: null}) // body data type must match "Content-Type" header
+      body: JSON.stringify({movieName: movieObj.title, status: "unwatched", username: user, score: score}) // body data type must match "Content-Type" header
     });
   }
 
