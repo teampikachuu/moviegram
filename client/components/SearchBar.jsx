@@ -38,7 +38,7 @@ const SearchBar = () => {
         'Content-Type': 'application/json'
         // 'Content-Type': 'application/x-www-form-urlencoded',
       },
-      body: JSON.stringify({movieName: movieObj.title, id: movieObj.id, status: "watched", username: user, score: null}) // body data type must match "Content-Type" header
+      body: JSON.stringify({movieName: movieObj.title, status: "watched", username: user, score: null}) // body data type must match "Content-Type" header
     });
   }
 
