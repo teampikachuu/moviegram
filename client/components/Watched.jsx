@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useTable } from 'react-table';
 import styled from 'styled-components'
 
-const ToWatch = () => {
+const Watched = () => {
   const [movies, setMovies] = useState([]);
 
   useEffect(() => {
@@ -15,7 +15,19 @@ const ToWatch = () => {
         setMovies(result);
         console.log(result);
       });
-  }, []);
+  });
+
+
+//   setInterval( 
+//     fetch('http://localhost:3000/api/watched?username=Terry', { 
+//       method: 'GET',
+//       //headers: {'Access-Control-Allow-Origin': 'http://localhost:3000'}
+//      })
+//       .then((response) => response.json())
+//       .then((result) => {
+//         setMovies(result);
+//         console.log(result);
+//       }), 2000)
 
   const Styles = styled.div`
   padding: 1rem;
@@ -136,4 +148,4 @@ const ToWatch = () => {
   // );
 };
 
-export default ToWatch;
+export default Watched;

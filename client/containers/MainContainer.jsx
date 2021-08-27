@@ -11,7 +11,9 @@ class MainContainer extends Component {
   render() {
     return(
       <div className="container">
-          <SearchBar />
+          <div className="searchBar">
+            <SearchBar />
+          </div>
           <div className="tables">
             <Watched />
             <ToWatch />

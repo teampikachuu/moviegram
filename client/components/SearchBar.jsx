@@ -5,6 +5,7 @@ import Autocomplete from '@material-ui/lab/Autocomplete';
 const SearchBar = () => {
   const [myOptions, setMyOptions] = useState([]);
   const [name, setName] = useState('');
+  //const [movies, setMovies] = useState([]);
   //const [selected, setSelected] = useState({})
   const user = "Terry"
   const getDataFromAPI = (value) => {
@@ -41,6 +42,7 @@ const SearchBar = () => {
       },
       body: JSON.stringify({movieName: movieObj.title, status: "watched", username: user, score: score}) // body data type must match "Content-Type" header
     });
+    //setMovies(movies.push({}))
   }
 
   const addToWantToWatch = () => {
@@ -62,9 +64,9 @@ const SearchBar = () => {
     console.log(env.target.value)
     setName(env.target.value)
   }
-
+//style={{ marginLeft: '40%', marginTop: '60px' }}
   return (
-    <div style={{ marginLeft: '40%', marginTop: '60px' }}>
+    <div className="searchBar">
       <form> 
       <h3>Search for Movie</h3>
       <Autocomplete
